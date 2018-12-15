@@ -43,6 +43,9 @@ fab fa-{{icon}}
           {% endif %}
           <li class="list-inline-item"><a class="{{ fa(icon) }}" href="{{ url(link) }}" target="_blank"></a></li>
         {% endfor %}
+        {% for title, link in MENUITEMS %}
+          <li class="list-inline-item"><a href="{{ link }}">{{ title }}</a></li>
+        {% endfor %}
       </ul>
     {% endif %}
   </div>
