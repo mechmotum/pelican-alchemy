@@ -14,9 +14,41 @@
 {% endblock %}
 
 {% block content %}
+
   <article class="article">
     <div class="content">
       {{ page.content }}
     </div>
   </article>
+
+{% if page.front == "true" %}
+  <article class="row">
+    <div class="content">
+      <h2>Updates</h2>
+      <ul class="list-group">
+      {% for article in articles[:5] %}
+        <li title="{{ article.date.isoformat() }}" class="list-group-item">
+          <i class="fa fa-clock-o"></i>
+          <strong>{{ article.locale_date }}</strong> |
+          <i class="fa fa-newspaper-o"></i>
+          <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+          </br>
+          {% if not HIDE_AUTHORS and article.authors %}
+          <i class="fa fa-user-o"></i>
+          {% for author in article.authors %}
+          <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>{% if not loop.last %}, {% endif %}
+          {% endfor %}
+          {% endif %}
+          |
+          <i class="fa fa-folder-open-o"></i>
+          <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+        </li>
+      {% endfor %}
+        <li class="list-group-item">
+          <a href="{{ SITEURL }}/{{ INDEX_SAVE_AS }}">More updates ...</a>
+      </ul>
+    </div>
+  </article>
+{% endif %}
+
 {% endblock %}
