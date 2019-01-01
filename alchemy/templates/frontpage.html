@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% for page in pages %}
+  {% if page.front == "true" %}
+
+    {% block title %}
+      {{ page.title|striptags }}
+      {{ super() }}
+    {% endblock %}
+
+    {% block head %}
+      {{ super() }}
+      <meta name="description" content="{{ page.summary|striptags }}">
+    {% endblock %}
+
+    {% block page_header %}
+      {{ page.title }}
+    {% endblock %}
+
+  {% endif %}
+{% endfor %}
+
+{% block content %}
+
+{% for page in pages %}
+  {% if page.front == "true" %}
+    <div class="col-sm-8">
+      <article class="row article">
+        <div class="content">
+        {{ page.content }}
+        </div>
+      </article>
+    </div>
+  {% endif %}
+{% endfor %}
+
+<article class="row">
+<div class="content">
+<h2>Updates</h2>
+<ul class="list-group">
+{% for article in articles[:5] %}
+  <li title="{{ article.date.isoformat() }}" class="list-group-item">
+    <i class="fa fa-clock-o"></i>
+    <strong>
+    {{ article.locale_date }}
+    </strong>
+    |
+    <i class="fa fa-newspaper-o"></i>
+    <a href="{{ SITEURL }}/{{ article.url }}">
+      {{ article.title }}
+    </a>
+    </br>
+    {% if not HIDE_AUTHORS and article.authors %}
+    <i class="fa fa-user-o"></i>
+    {% for author in article.authors %}
+      <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>{% if not loop.last %}, {% endif %}
+    {% endfor %}
+    {% endif %}
+    |
+    <i class="fa fa-folder-open-o"></i>
+    <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+  </li>
+{% endfor %}
+  <li class="list-group-item">
+    <a href="{{ SITEURL }}">
+      More updates ...
+    </a>
+</ul>
+</div>
+</article>
+{% endblock %}
