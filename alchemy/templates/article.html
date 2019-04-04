@@ -57,6 +57,14 @@
         {% endif %}
       </ul>
     </header>
+
+    {% if article.toc %}
+    <h2>Contents</h2>
+    <div class="toc">
+      {{ article.toc }}
+    </div>
+    {% endif %}
+
     <div class="content">
       {{ article.content }}
       {% if article.link %}

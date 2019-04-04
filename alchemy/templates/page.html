@@ -16,6 +16,15 @@
 {% block content %}
 
   <article class="article">
+
+    {% if article.toc %}
+    <h2>Contents</h2>
+    <div class="toc">
+      {{ article.toc }}
+    </div>
+
+    {% endif %}
+
     <div class="content">
       {{ page.content }}
     </div>
