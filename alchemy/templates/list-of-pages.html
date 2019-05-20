@@ -1,0 +1,68 @@
+<!--
+  This template displays a summary of pages in a directory below the content
+  provided in the index.rst file.
+
+  content/pages/dir-of-pages/
+    index.rst
+    page1.rst
+    page2.rst
+
+  The index.rst file should have:
+
+  - page-dir : name of parent directory (not full path, just name). This name
+               should be unique.
+
+  Each page should have these metadata items:
+  - date
+  - summary-sentence
+  - summary-image
+-->
+{% extends "base.html" %}
+
+{% block head %}
+  {{ super() }}
+  <meta name="description" content="{{ page.summary|striptags }}">
+{% endblock %}
+
+{% block title %}
+  {{ page.title|striptags }} {{ super() }}
+{% endblock %}
+
+{% block page_header %}
+  {{ page.title }}
+{% endblock %}
+
+{% block content %}
+
+<article class="article">
+{% if page.toc %}
+  <h2>Contents</h2>
+  <div class="toc">
+    {{ page.toc }}
+  </div>
+{% endif %}
+  <div class="content">
+    {{ page.content }}
+  </div>
+</article>
+
+<div class="container">
+{% for p in hidden_pages|sort(attribute='date') %}
+  {% if '/' + page.metadata['page-dir'] + '/' in p.source_path %}
+  <div class="row">
+    <h3><a href={{ p.url }}>{{ p.title }}</a></h3>
+    <h4>{{ p.date.isoformat() }}</h4>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <img style="width:100%;" src="{{ p.metadata['summary-image'] }}" />
+    </div>
+    <div class="col-sm">
+      {{ p.metadata['summary-sentence'] }}
+    </div>
+  </div>
+  {% endif %}
+{% endfor %}
+</div>
+
+{% endblock %}
