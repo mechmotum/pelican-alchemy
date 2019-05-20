@@ -15,49 +15,61 @@
 
 {% block content %}
 
-  <article class="article">
-
-    {% if page.toc %}
-    <h2>Contents</h2>
-    <div class="toc">
-      {{ page.toc }}
-    </div>
-
-    {% endif %}
-
-    <div class="content">
-      {{ page.content }}
-    </div>
-  </article>
+<article class="article">
+{% if page.toc %}
+  <h2>Contents</h2>
+  <div class="toc">
+    {{ page.toc }}
+  </div>
+{% endif %}
+  <div class="content">
+    {{ page.content }}
+  </div>
+</article>
 
 {% if page.front == "true" %}
-  <article class="row">
-    <div class="content">
-      <h2>Updates</h2>
-      <ul class="list-group">
-      {% for article in articles[:5] %}
-        <li title="{{ article.date.isoformat() }}" class="list-group-item">
-          <i class="fa fa-clock-o"></i>
-          <strong>{{ article.locale_date }}</strong> |
-          <i class="fa fa-newspaper-o"></i>
-          <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
-          </br>
-          {% if not HIDE_AUTHORS and article.authors %}
-          <i class="fa fa-user-o"></i>
-          {% for author in article.authors %}
-          <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>{% if not loop.last %}, {% endif %}
-          {% endfor %}
-          {% endif %}
-          |
-          <i class="fa fa-folder-open-o"></i>
-          <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
-        </li>
-      {% endfor %}
-        <li class="list-group-item">
-          <a href="{{ SITEURL }}/{{ INDEX_SAVE_AS }}">More updates ...</a>
+<div class="row">
+  <div class="col-sm">
+    {% if ARTICLE_LIST_SUBTITLE %}
+    <h2>{{ ARTICLE_LIST_SUBTITLE }}</h2>
+    {% else %}
+    <h2>Updates</h2>
+    {% endif %}
+    <ul class="list-group">
+    {% for article in articles[:5] %}
+      <li title="{{ article.date.isoformat() }}" class="list-group-item">
+        <i class="fa fa-clock-o"></i>
+        <strong>{{ article.locale_date }}</strong> |
+        <i class="fa fa-newspaper-o"></i>
+        <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+        </br>
+        {% if not HIDE_AUTHORS and article.authors %}
+        <i class="fa fa-user-o"></i>
+        {% for author in article.authors %}
+        <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>{% if not loop.last %}, {% endif %}
+        {% endfor %}
+        {% endif %}
+        |
+        <i class="fa fa-folder-open-o"></i>
+        <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+      </li>
+    {% endfor %}
+      <li class="list-group-item">
+        <a href="{{ SITEURL }}/{{ INDEX_SAVE_AS }}">More updates ...</a>
       </ul>
-    </div>
-  </article>
+  </div>
+  {% if TWITTER_USERNAME %}
+  <div class="col-sm-3">
+    <a class="twitter-timeline"
+       data-width="300"
+       data-height="500"
+       href="https://twitter.com/{{ TWITTER_USERNAME }}?ref_src=twsrc%5Etfw">
+       Tweets by {{ TWITTER_USERNAME }}
+    </a>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </div>
+  {% endif %}
+</div>
 {% endif %}
 
 {% endblock %}
