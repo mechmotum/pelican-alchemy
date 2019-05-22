@@ -47,11 +47,10 @@
 </article>
 
 <div class="container">
-{% for p in hidden_pages|sort(attribute='date') %}
+{% for p in hidden_pages|sort(attribute='date', reverse=True) %}
   {% if '/' + page.metadata['page-dir'] + '/' in p.source_path %}
   <div class="row">
     <h3><a href={{ p.url }}>{{ p.title }}</a></h3>
-    <h4>{{ p.date.isoformat() }}</h4>
   </div>
   <div class="row">
     <div class="col-sm-4">
