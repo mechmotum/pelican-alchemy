@@ -17,6 +17,9 @@
 
 {% block content %}
   {% for article in articles_page.object_list %}
+    <!-- "category" is only available in the category.html template so the list
+      will geenrate if one a category page for the excluded categories. -->
+    {% if category in EXCLUDED_CATEGORIES or article.category not in EXCLUDED_CATEGORIES %}
     <article class="row teaser">
       <header class="col-sm-4 text-muted">
         <ul>
@@ -49,6 +52,7 @@
     </article>
     {% if not loop.last %}
       <hr>
+    {% endif %}
     {% endif %}
   {% endfor %}
   {% include 'include/pagination.html' %}
