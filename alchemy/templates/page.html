@@ -23,6 +23,14 @@
   </div>
 {% endif %}
   <div class="content">
+    {% if page.metadata['summary-sentence'] %}
+      <h2>Summary</h2>
+      <img style="align: center;height: 480px;margin: 10px;" src="{{ page.metadata['summary-image'] }}"></img>
+      <p>
+      {{ page.metadata['summary-sentence'] }}
+      </p>
+      <br>
+    {% endif %}
     {{ page.content }}
   </div>
 </article>
