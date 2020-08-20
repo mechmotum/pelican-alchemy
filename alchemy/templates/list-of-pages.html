@@ -14,8 +14,9 @@
 
   Each page should have these metadata items:
   - date
-  - summary-sentence
-  - summary-image
+  - summary-sentence : more like a paragraph
+  - summary-image : this should be a 400x400 px url to an image
+
 -->
 {% extends "base.html" %}
 
@@ -57,7 +58,7 @@
       <img style="width:100%;" src="{{ p.metadata['summary-image'] }}" />
     </div>
     <div class="col-sm">
-      {{ p.metadata['summary-sentence'] }}
+      <p>{{ p.metadata['summary-sentence'] }}</p>
     </div>
   </div>
   {% endif %}
