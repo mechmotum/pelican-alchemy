@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {{ super() }}
+  <meta name="description" content="{{ page.summary|striptags }}">
+{% endblock %}
+
+{% block title %}
+  {{ page.title|striptags }} {{ super() }}
+{% endblock %}
+
+{% block page_header %}
+  {{ page.title }}
+{% endblock %}
+
+{% block content %}
+
+<article class="article">
+  <div class="content">
+    <div class="row">
+      <div class="col-sm-4">
+        <img style="width:100%;" src="{{ page.metadata['summary-image'] }}" />
+      </div>
+      <div class="col-sm">
+        <h2>Summary</h2>
+        <p>{{ page.metadata['summary-sentence'] }}</p>
+      </div>
+    </div>
+    <table class="table">
+      <tr>
+        <td><strong>Theme</strong></td>
+        <td>{{ page.research_theme }}</td>
+        <td><strong>Current Researchers</strong></td>
+        <td>{{ page.current_researchers }}</td>
+      </tr>
+      <tr>
+        <td><strong>Last Worked On</strong></td>
+        <td>{{ page.date.strftime('%B %Y') }}</td>
+        <td><strong>Past Researchers</strong></td>
+        <td>{{ page.past_researchers }}</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td><strong>Collaborators</strong></td>
+        <td>{{ page.collaborators }}</td>
+      </tr>
+    </table>
+    {{ page.content }}
+  </div>
+</article>
+
+{% endblock %}
