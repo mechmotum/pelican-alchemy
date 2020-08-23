@@ -49,19 +49,19 @@
     <ul class="list-group">
     {% for article in articles[:5] %}
       <li title="{{ article.date.isoformat() }}" class="list-group-item">
-        <i class="fa fa-clock-o"></i>
+        <i class="fas fa-clock"></i>
         <strong>{{ article.locale_date }}</strong> |
-        <i class="fa fa-newspaper-o"></i>
+        <i class="fas fa-newspaper"></i>
         <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
         </br>
         {% if not HIDE_AUTHORS and article.authors %}
-        <i class="fa fa-user-o"></i>
+        <i class="fas fa-user"></i>
         {% for author in article.authors %}
         <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>{% if not loop.last %}, {% endif %}
         {% endfor %}
         {% endif %}
         |
-        <i class="fa fa-folder-open-o"></i>
+        <i class="fas fa-folder-open"></i>
         <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
       </li>
     {% endfor %}
