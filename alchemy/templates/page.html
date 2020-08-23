@@ -48,7 +48,8 @@
     {% endif %}
     <ul class="list-group">
     {% for article in articles[:5] %}
-      <li title="{{ article.date.isoformat() }}" class="list-group-item">
+      <li title="{{ article.date.isoformat() }}" class="list-group-item
+        text-muted">
         <i class="fas fa-clock"></i>
         <strong>{{ article.locale_date }}</strong> |
         <i class="fas fa-newspaper"></i>
