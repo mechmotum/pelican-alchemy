@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 
 {% block title %}
-  #{{ tag }} Articles | {{ SITENAME }}
+  #{{ tag }} Articles | {{ SITENAME|striptags }}
 {% endblock %}
 
 {% block page_header %}

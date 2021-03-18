@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 
 {% block title %}
-  {{ author }} Articles | {{ SITENAME }}
+  {{ author }} Articles | {{ SITENAME|striptags }}
 {% endblock %}
 
 {% block page_header %}
