@@ -1,0 +1,34 @@
+{% extends "page.html" %}
+
+{% block content %}
+
+<article class="article">
+{% if page.toc %}
+  <h2>Contents</h2>
+  <div class="toc">
+    {{ page.toc }}
+  </div>
+{% endif %}
+  <div class="content">
+    {% if page.metadata['summary-sentence'] %}
+    <div class="row">
+      <div class="col-sm-4">
+        <img style="width:100%;" src="{{ page.metadata['summary-image'] }}" />
+      </div>
+      <div class="col-sm">
+        <h2>Summary</h2>
+        <p>{{ page.metadata['summary-sentence'] }}</p>
+      </div>
+    </div>
+    {% endif %}
+    {{ page.content }}
+    <h2>How To Apply</h2>
+    <p>If you would like to apply for this project, please send an
+    approximately half page letter explaining your motivations and interest in
+    the lab and project, CV or resume, a list of courses you've taken, the name
+    of your MSc track, and any other relevant information to
+    <a href='mailto:j.k.moore@tudelft.nl'>j.k.moore@tudelft.nl</a>.</p>
+  </div>
+</article>
+
+{% endblock %}
