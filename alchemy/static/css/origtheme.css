@@ -224,8 +224,17 @@ dd {
 /* .. contents: Table of Contents */
 /*    :local: */
 /*    :class: floatcon */
-.floatcon {
-  float: right;
-  border-style: solid none solid none;
-  padding: 5px;
+@media (min-width: 768px) {
+  .floatcon {
+    float: right;
+    border-style: solid none solid none;
+    padding: 5px;
+    margin: 5px;
+  }
+}
+@media (max-width: 768px) {
+  .floatcon {
+    border-style: solid none solid none;
+    padding: 5px;
+  }
 }
