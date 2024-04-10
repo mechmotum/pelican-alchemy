@@ -49,7 +49,7 @@
 
 <div class="container">
 {% for p in hidden_pages|sort(attribute='date', reverse=True) %}
-  {% if '/' + page.metadata['page-dir'] + '/' in p.source_path %}
+  {% if (OS_SEP or '/') + page.metadata['page-dir'] + (OS_SEP or '/') in p.source_path %}
   <div class="row">
     <h3><a href={{ p.url }}>{{ p.title }}</a></h3>
   </div>
