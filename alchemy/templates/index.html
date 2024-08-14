@@ -21,7 +21,7 @@
       will geenrate if one a category page for the excluded categories. -->
     {% if category in EXCLUDED_CATEGORIES or article.category not in EXCLUDED_CATEGORIES %}
     <article class="row teaser">
-      <header class="col-sm-4 text-muted">
+      <header class="col-sm-3 text-muted">
         <ul>
           <li title="{{ article.date.isoformat() }}">
             <i class="fas fa-clock"></i>
@@ -41,7 +41,12 @@
           {% endif %}
         </ul>
       </header>
-      <div class="col-sm-8">
+      {% if article.thumbnail %}
+      <div class="col-sm-3">
+        <img src="{{ article.thumbnail }}" style="width:100%;"/>
+      </div>
+      {% endif %}
+      <div class="col-sm-{{ 6 if article.thumbnail else 9 }}">
         <h4 class="title">
           <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}{% if article.link %} <i class="fas fa-link"></i>{% endif %}</a>
         </h4>
